@@ -1,0 +1,148 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "Cormorant";
+  src: url("https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjQAllvuQWJ5heb_w.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@theme inline {
+  --font-display: "Cormorant Garamond", "Cormorant", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-graphite: var(--graphite);
+  --color-cream: var(--cream);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.25rem;
+  /* Premium dark palette */
+  --background: oklch(0.12 0.005 60);
+  --foreground: oklch(0.96 0.01 80);
+  --card: oklch(0.16 0.006 60);
+  --card-foreground: oklch(0.96 0.01 80);
+  --popover: oklch(0.14 0.005 60);
+  --popover-foreground: oklch(0.96 0.01 80);
+  --primary: oklch(0.78 0.12 82); /* champagne gold */
+  --primary-foreground: oklch(0.12 0.005 60);
+  --secondary: oklch(0.22 0.008 60);
+  --secondary-foreground: oklch(0.96 0.01 80);
+  --muted: oklch(0.2 0.005 60);
+  --muted-foreground: oklch(0.7 0.015 70);
+  --accent: oklch(0.78 0.12 82);
+  --accent-foreground: oklch(0.12 0.005 60);
+  --gold: oklch(0.78 0.12 82);
+  --gold-soft: oklch(0.88 0.08 85);
+  --graphite: oklch(0.22 0.008 60);
+  --cream: oklch(0.95 0.02 80);
+  --destructive: oklch(0.6 0.2 27);
+  --destructive-foreground: oklch(0.98 0.003 60);
+  --border: oklch(0.28 0.01 70 / 60%);
+  --input: oklch(0.28 0.01 70);
+  --ring: oklch(0.78 0.12 82);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .text-gold { color: var(--gold); }
+  .bg-gold { background-color: var(--gold); }
+  .border-gold { border-color: var(--gold); }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, oklch(0.88 0.08 85), oklch(0.72 0.13 78), oklch(0.88 0.08 85));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--primary-foreground);
+    transition: all 0.3s ease;
+  }
+  .btn-gold:hover {
+    background: var(--gold-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -12px oklch(0.78 0.12 82 / 50%);
+  }
+
+  .btn-ghost-gold {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    transition: all 0.3s ease;
+  }
+  .btn-ghost-gold:hover {
+    background: var(--gold);
+    color: var(--primary-foreground);
+  }
+}
